@@ -18,8 +18,8 @@ pipeline {
                 stage ("ClONE_PROJECT"){
 
                             steps {
-                                        //sh "rm -rf *"
-                                        //sh "git clone $url"
+                                        sh "rm -rf *"
+                                        sh "git clone $url"
                                     //checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nikhilbamane/mvn-webapp-demo.git']])
                                     //build "gitclone"
                                     // script {
@@ -27,7 +27,7 @@ pipeline {
                                     //             credentialsId: 'github',
                                     //             url: 'https://github.com/nikhilbamane/nikhilbamane.git'
                                     //     }
-                                    git credentialsId: 'github', url: 'https://github.com/nikhilbamane/nikhilbamane.git'
+                                    // git credentialsId: 'github', url: 'https://github.com/nikhilbamane/nikhilbamane.git'
 
                             }
 
