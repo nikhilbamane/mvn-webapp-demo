@@ -29,7 +29,8 @@ pipeline {
 
                                 steps {
 
-                                            sh "cd mvn-webapp-demo && mvn clean install -DskipTests=true"
+                                            //sh "cd mvn-webapp-demo && mvn clean install -DskipTests=true"
+                                        sh "cd mvn-webapp-demo && mvn clean install"
 
                                 }
 
