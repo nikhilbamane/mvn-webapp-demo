@@ -18,7 +18,7 @@ pipeline {
                 stage ("ClONE_PROJECT"){
 
                             steps {
-                                        sh "rm -rf *"
+                                        //sh "rm -rf *"
                                         //sh "git clone $url"
                                     checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nikhilbamane/mvn-webapp-demo.git']])
 
