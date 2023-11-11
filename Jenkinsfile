@@ -21,7 +21,12 @@ pipeline {
                                         //sh "rm -rf *"
                                         //sh "git clone $url"
                                     //checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nikhilbamane/mvn-webapp-demo.git']])
-                                    build "gitclone"
+                                    //build "gitclone"
+                                    script {
+                                            git branch: 'main',
+                                                credentialsId: 'github',
+                                                url: 'https://github.com/nikhilbamane/nikhilbamane.git'
+                                        }
 
                             }
 
