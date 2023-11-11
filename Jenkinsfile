@@ -19,7 +19,8 @@ pipeline {
 
                             steps {
                                         sh "rm -rf *"
-                                        sh "git clone $url"
+                                        //sh "git clone $url"
+                                    checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nikhilbamane/mvn-webapp-demo.git']])
 
                             }
 
@@ -61,7 +62,13 @@ pipeline {
                         sh "sudo docker system prune -af"
                         //sh "sudo docker build . --no-cache -t webapp:${BUILD_NUMBER} -f /nikhil/dockerfile"
                         sh "sudo docker build --no-cache -t webapp:${BUILD_NUMBER} ."
-                        sh "sudo docker run --name webapp webapp:${BUILD_NUMBER}"
+                        //sh "sudo docker run --name webapp webapp:${BUILD_NUMBER}"
+                            script {
+                            withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
+                                sh "docker login -u nikhilbamane -p ${dockerhub}"
+                                sh "docker push nikhilbamane/webapp:${BUILD_NUMBER}"
+                            }
+                        }
                     }
                 }
 
