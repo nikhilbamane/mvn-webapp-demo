@@ -66,7 +66,7 @@ pipeline {
                                 // sh "sudo docker system prune -af"
                                 //sh "sudo docker build . --no-cache -t webapp:${BUILD_NUMBER} -f /nikhil/dockerfile"
                                 sh "sudo docker build --no-cache -t webapp:${BUILD_NUMBER} ."
-                                //sh "sudo docker run --name webapp webapp:${BUILD_NUMBER}"
+                                sh "sudo docker run --name webapp webapp:${BUILD_NUMBER}"
                                 // script {
                                 //         withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
                                 //                 sh "sudo docker login -u nikhilbamane -p ${dockerhub}"
