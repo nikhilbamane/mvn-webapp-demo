@@ -54,9 +54,9 @@ pipeline {
 
                         steps {
                                 // sh "sudo docker stop webapp || true && docker rm webapp || true"
-                                sh 'sudo docker stop $(docker ps -aq)'
-                                sh 'sudo docker rm $(docker ps -aq)'
-                                sh 'sudo docker rmi $(docker images -q)'
+                                sh '''sudo docker stop $(docker ps -aq)'''
+                                sh '''sudo docker rm $(docker ps -aq)'''
+                                sh '''sudo docker rmi $(docker images -q)'''
                                 // sh "sudo docker stop webapp"
                                 // sh "sudo docker kill webapp"
                                 // sh "sudo docker rm webapp"
