@@ -53,18 +53,18 @@ pipeline {
                         }
 
                         steps {
-                                sh "docker stop webapp"
-                                sh "docker kill webapp"
-                                sh "docker rm webapp"
-                                sh "docker rmi webapp"
+                                sh "sudo docker stop webapp"
+                                sh "sudo docker kill webapp"
+                                sh "sudo docker rm webapp"
+                                sh "sudo docker rmi webapp"
                                 sh "sudo docker system prune -af"
                                 //sh "sudo docker build . --no-cache -t webapp:${BUILD_NUMBER} -f /nikhil/dockerfile"
                                 sh "sudo docker build --no-cache -t webapp:${BUILD_NUMBER} ."
                                 //sh "sudo docker run --name webapp webapp:${BUILD_NUMBER}"
                                 // script {
                                 //         withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
-                                //                 sh "docker login -u nikhilbamane -p ${dockerhub}"
-                                //                 sh "docker push nikhilbamane/webapp:${BUILD_NUMBER}"
+                                //                 sh "sudo docker login -u nikhilbamane -p ${dockerhub}"
+                                //                 sh "sudo docker push nikhilbamane/webapp:${BUILD_NUMBER}"
                                 //         }
                                 // }
                         }
