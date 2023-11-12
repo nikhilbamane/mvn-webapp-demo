@@ -12,37 +12,37 @@ pipeline {
         }
 
         stages {
-                stage ("ClONE_PROJECT"){
-                        steps {
-                        sh "rm -rf *"
-                        sh "git clone $url"
-                        // checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nikhilbamane/mvn-webapp-demo.git']])
-                        // build "gitclone"
-                        // script {
-                        //        git branch: 'master',
-                        //        credentialsId: 'github',
-                        //        url: 'https://github.com/nikhilbamane/nikhilbamane.git'
-                        // }
-                        // git credentialsId: 'github', url: 'https://github.com/nikhilbamane/nikhilbamane.git'
+                // stage ("ClONE_PROJECT"){
+                //         steps {
+                //         sh "rm -rf *"
+                //         sh "git clone $url"
+                //         // checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nikhilbamane/mvn-webapp-demo.git']])
+                //         // build "gitclone"
+                //         // script {
+                //         //        git branch: 'master',
+                //         //        credentialsId: 'github',
+                //         //        url: 'https://github.com/nikhilbamane/nikhilbamane.git'
+                //         // }
+                //         // git credentialsId: 'github', url: 'https://github.com/nikhilbamane/nikhilbamane.git'
 
-                            }
+                //             }
 
-                }
+                // }
 
-                stage ("BUILD_PROJECT") {
-                        steps {
-                                //sh "cd mvn-webapp-demo && mvn clean install -DskipTests=true"
-                                sh "cd mvn-webapp-demo && mvn clean install"
+                // stage ("BUILD_PROJECT") {
+                //         steps {
+                //                 //sh "cd mvn-webapp-demo && mvn clean install -DskipTests=true"
+                //                 sh "cd mvn-webapp-demo && mvn clean install"
 
-                        }
-                }
+                //         }
+                // }
 
-                stage ("COPY") {
-                        steps {
-                                build "copy"
+                // stage ("COPY") {
+                //         steps {
+                //                 build "copy"
 
-                        }
-                }
+                //         }
+                // }
 
                 stage ("DOCKER") {
                         agent {
@@ -53,10 +53,12 @@ pipeline {
                         }
 
                         steps {
-                                // sh "sudo docker stop webapp || true && docker rm webapp || true"
-                                sh '''sudo docker stop $(docker ps -aq)'''
-                                sh '''sudo docker rm $(docker ps -aq)'''
-                                sh '''sudo docker rmi $(docker images -q)'''
+                                sh "sudo docker stop webapp || true"
+                                sh "sudo docker rm webapp || true"
+                                sh "sudo docker rmi webapp || true"
+                                // sh "sudo docker stop $(docker ps -aq)"
+                                // sh "sudo docker rm $(docker ps -aq)"
+                                // sh "sudo docker rmi $(docker images -q)"
                                 // sh "sudo docker stop webapp"
                                 // sh "sudo docker kill webapp"
                                 // sh "sudo docker rm webapp"
