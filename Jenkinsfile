@@ -40,10 +40,10 @@ pipeline {
                 stage ("COPY") {
                         steps {
                                 // build "copy"
-                                sh "sudo docker build . --no-cache -t webapp:${BUILD_NUMBER} -f ./mvn-webapp-demo/Dockerfile"
+                                sh "sudo docker build . --no-cache -t nikhilbamane/webapp:${BUILD_NUMBER} -f ./mvn-webapp-demo/Dockerfile"
                                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
                                         sh "sudo docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
-                                        sh 'sudo docker push nikhil/webapp:${BUILD_NUMBER}'
+                                        sh 'sudo docker push nikhilbamane/webapp:${BUILD_NUMBER}'
                                 }
 
                         }
