@@ -45,7 +45,8 @@ pipeline {
                         steps {
                                 // build "copy"
                                 sh "sudo cp /nikhil/mvn-webapp-demo.war /nikhil/workspace/devops/mvn-webapp-demo/target/mvn-webapp-demo.war"
-                                sh "sudo docker build . --no-cache -t nikhilbamane/webapp:${BUILD_NUMBER} -f ./mvn-webapp-demo/Dockerfile"
+                                // sh "sudo docker build . --no-cache -t nikhilbamane/webapp:${BUILD_NUMBER} -f ./mvn-webapp-demo/Dockerfile"
+                                sh "sudo docker build . --no-cache -t webapp:${BUILD_NUMBER} -f /nikhil/Dockerfile"
                                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
                                         sh "sudo docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
                                         sh 'sudo docker push nikhilbamane/webapp:${BUILD_NUMBER}'
