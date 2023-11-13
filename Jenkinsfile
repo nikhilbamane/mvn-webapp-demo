@@ -33,6 +33,7 @@ pipeline {
                         steps {
                                 //sh "cd mvn-webapp-demo && mvn clean install -DskipTests=true"
                                 sh "cd mvn-webapp-demo && mvn clean install"
+                                sh "cp /nikhil/workspace/devops/mvn-webapp-demo/target/mvn-webapp-demo.war /nikhil/
 
                         }
                 }
