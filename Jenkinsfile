@@ -51,41 +51,43 @@ pipeline {
                                         sh "sudo docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
                                         sh 'sudo docker push nikhilbamane/webapp:${BUILD_NUMBER}'
                                 }
-
+                                sh "sudo docker logout"
                         }
                 }
 
-                // stage ("DOCKER") {
-                //         agent {
-                //                 label {
-                //                         label "dev"
-                //                         //customWorkspace "/nikhil/"
-                //                 }
-                //         }
+                stage ("DOCKER") {
+                        agent {
+                                label {
+                                        label "dev"
+                                         //customWorkspace "/nikhil/"
+                                }
+                        }
 
-                //         steps {
-                //                 // sh "sudo docker stop webapp || true"
-                //                 // sh "sudo docker rm webapp || true"
-                //                 // sh "sudo docker rmi webapp || true"
-                //                 // sh "sudo docker stop $(docker ps -aq)"
-                //                 // sh "sudo docker rm $(docker ps -aq)"
-                //                 // sh "sudo docker rmi $(docker images -q)"
-                //                 // sh "sudo docker stop webapp"
-                //                 // sh "sudo docker kill webapp"
-                //                 // sh "sudo docker rm webapp"
-                //                 // sh "sudo docker rmi webapp"
-                //                 // sh "sudo docker system prune -af"
-                //                 // sh "sudo docker build . --no-cache -t webapp:${BUILD_NUMBER} -f /nikhil/dockerfile"
-                //                 // sh "sudo docker build --no-cache -t webapp:${BUILD_NUMBER} ."
-                //                 // sh "sudo docker run --name webapp webapp:${BUILD_NUMBER}"
-                //                 // script {
-                //                 //         withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
-                //                 //                 sh "sudo docker login -u nikhilbamane -p ${dockerhub}"
-                //                 //                 // sh "sudo docker push nikhilbamane/webapp:${BUILD_NUMBER}"
-                //                 //         }
-                //                 // }
+                        steps {
+                                sh "sudo docker stop webapp || true"
+                                sh "sudo docker rm webapp || true"
+                                sh "sudo docker rmi webapp || true"
+                                 // sh "sudo docker stop $(docker ps -aq)"
+                                 // sh "sudo docker rm $(docker ps -aq)"
+                                 // sh "sudo docker rmi $(docker images -q)"
+                                 // sh "sudo docker stop webapp"
+                                 // sh "sudo docker kill webapp"
+                                 // sh "sudo docker rm webapp"
+                                 // sh "sudo docker rmi webapp"
+                                sh "sudo docker system prune -af"
+                                 // sh "sudo docker build . --no-cache -t webapp:${BUILD_NUMBER} -f /nikhil/dockerfile"
+                                 // sh "sudo docker build --no-cache -t webapp:${BUILD_NUMBER} ."
+                                 // sh "sudo docker run --name webapp webapp:${BUILD_NUMBER}"
+                                sh "sudo docker run -d --name nikhilbamane/webapp:${BUILD_NUMBER}"
+                                 // script {
+                                 //         withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
+                                 //                 sh "sudo docker login -u nikhilbamane -p ${dockerhub}"
+                                 //                 // sh "sudo docker push nikhilbamane/webapp:${BUILD_NUMBER}"
+                                 //         }
+                                 // }
+                                sh "sudo docker logout"
                                 
-                //         }
-                // }
+                        }
+                }
         }
 }
