@@ -32,7 +32,7 @@ pipeline {
                 stage ("BUILD_PROJECT") {
                         steps {
                                 //sh "cd mvn-webapp-demo && mvn clean install -DskipTests=true"
-                                sh "sudo cd mvn-webapp-demo && sudo mvn clean install"
+                                sh "cd mvn-webapp-demo && mvn clean install"
                                 sh "sudo cp /nikhil/workspace/devops/mvn-webapp-demo/target/mvn-webapp-demo.war /nikhil/"
                                 sh "sudo chmod -R 777 /nikhil/workspace/devops/mvn-webapp-demo/target/mvn-webapp-demo.war"
 
