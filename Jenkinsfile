@@ -14,8 +14,8 @@ pipeline {
         stages {
                 stage ("ClONE_PROJECT"){
                         steps {
-                        sh "rm -rf *"
-                        sh "git clone $url"
+                        sh "sudo rm -rf *"
+                        sh "sudo git clone $url"
                         // checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nikhilbamane/mvn-webapp-demo.git']])
                         // build "gitclone"
                         // script {
@@ -32,9 +32,9 @@ pipeline {
                 stage ("BUILD_PROJECT") {
                         steps {
                                 //sh "cd mvn-webapp-demo && mvn clean install -DskipTests=true"
-                                sh "cd mvn-webapp-demo && mvn clean install"
-                                sh "cp /nikhil/workspace/devops/mvn-webapp-demo/target/mvn-webapp-demo.war /nikhil/"
-                                sh "chmod -R 777 /nikhil/workspace/devops/mvn-webapp-demo/target/mvn-webapp-demo.war"
+                                sh "sudo cd mvn-webapp-demo && sudo mvn clean install"
+                                sh "sudo cp /nikhil/workspace/devops/mvn-webapp-demo/target/mvn-webapp-demo.war /nikhil/"
+                                sh "sudo chmod -R 777 /nikhil/workspace/devops/mvn-webapp-demo/target/mvn-webapp-demo.war"
 
                         }
                 }
